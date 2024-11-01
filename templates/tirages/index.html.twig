@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tirages index{% endblock %}
+
+{% block body %}
+    <h1>Tirages index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tir_date</th>
+                <th>Tir_1</th>
+                <th>Tir_2</th>
+                <th>Tir_3</th>
+                <th>Tir_4</th>
+                <th>Tir_5</th>
+                <th>Tir_c</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tirage in tirages %}
+            <tr>
+                <td>{{ tirage.id }}</td>
+                <td>{{ tirage.tirDate ? tirage.tirDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ tirage.tir1 }}</td>
+                <td>{{ tirage.tir2 }}</td>
+                <td>{{ tirage.tir3 }}</td>
+                <td>{{ tirage.tir4 }}</td>
+                <td>{{ tirage.tir5 }}</td>
+                <td>{{ tirage.tirC }}</td>
+                <td>
+                    <a href="{{ path('app_tirages_show', {'id': tirage.id}) }}">show</a>
+                    <a href="{{ path('app_tirages_edit', {'id': tirage.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_tirages_new') }}">Create new</a>
+{% endblock %}
